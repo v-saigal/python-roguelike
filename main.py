@@ -22,8 +22,9 @@ map_obstacles = numpy.zeros((width_tiles, height_tiles))
 
 map_obstacles = [(5,5), (5,6), (5,7)]
 
-player = Player.Player(numpy.zeros(2))
-player_sprite = pygame.image.load(player.sprite)
+
+player_sprite = pygame.image.load("playersprite.png")
+player = Player.Player(numpy.zeros(2), player_sprite)
 helpers = Helpers.Helpers()                 
 wall_sprite = pygame.image.load("wall_vertical.png")
 
@@ -61,12 +62,11 @@ while(True):
                 change = [-1, 0]
             if change != []:
                 if (detect_collision(player=player, change=change, map_obstacles=map_obstacles) == False):
-                    screen.blit(image, helpers.coordinates_to_pixels(player.position))
+                    screen.blit(image, player.position_pixels)
                     player.move(change=change)
 
-
                 
-        screen.blit(player_sprite, helpers.coordinates_to_pixels(player.position))
+        screen.blit(player.image, player.position_pixels)
 
         pygame.display.flip()
 

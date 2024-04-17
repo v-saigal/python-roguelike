@@ -1,8 +1,6 @@
-class Player:
-    def __init__(self, position):
-        self.position = position
-    
-    sprite = "playersprite.png"
+import Creature
 
-    def move(self, change):
-        self.position += change
+class Player(Creature.Creature):
+    def __init__(self, position, sprite):
+        Creature.Creature.__init__(self, position, sprite)
+
